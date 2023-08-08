@@ -1,5 +1,9 @@
 import pandas as pd
 
+import acquire
+
+
+
 
 def prep_iris():
 
@@ -30,11 +34,9 @@ def prep_telco():
 
     te_data = telco_data.drop(columns=['customer_id', 'payment_type_id', 'contract_type_id', 'internet_service_type_id'])
 
-    return te_data
-    
+    return te_data    
     
 
-# this function will be good for splitting classification data per our target
 
 def train_val_test(df, strat, seed = 42):
 
