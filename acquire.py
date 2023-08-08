@@ -1,12 +1,12 @@
-import pandas as pd
-import numpy as np
-import matplotlib.pyplot as plt
-import seaborn as sns
 import os
 
-from pydataset import data
-from scipy import stats
+import pandas as pd
+
 from env import get_connection
+
+
+
+
 
 db_url = get_connection('titanic_db')
 
@@ -17,6 +17,10 @@ query = '''
 
 titanic_data = pd.read_sql(query, db_url)
 titanic_data.head()
+
+
+
+
 
 def get_titanic_data():
 
@@ -47,6 +51,10 @@ def get_titanic_data():
 get_titanic_data()
 
 
+
+
+
+
 db_url = get_connection('iris_db')
 
 query = '''
@@ -56,6 +64,10 @@ query = '''
 
 iris_data = pd.read_sql(query, db_url)
 iris_data.head()
+
+
+
+
 
 def get_iris_data():
 
@@ -76,6 +88,8 @@ def get_iris_data():
         query = '''
                 SELECT * 
                 FROM species
+                LEFT JOIN measurements ON species.species_id = measurements.species_id
+                ;
                 '''
         
         iris_df = pd.read_sql(query, url)
@@ -84,6 +98,10 @@ def get_iris_data():
         return iris_df 
 
 get_iris_data()
+
+
+
+
 
 
 db_url = get_connection('telco_churn')
@@ -99,6 +117,9 @@ query = '''
 
 telco_data = pd.read_sql(query, db_url)
 telco_data.head()
+
+
+
 
 def get_telco_data():
 
@@ -117,7 +138,7 @@ def get_telco_data():
         url = get_connection('telco_churn')
 
         query = '''
-                SELECT internet_service_type_id, contract_type_id, payment_type_id
+                SELECT *
                 FROM customers
                 JOIN internet_service_types USING (internet_service_type_id)
                 JOIN contract_types USING (contract_type_id)
