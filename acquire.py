@@ -8,10 +8,6 @@ from pydataset import data
 from scipy import stats
 from env import get_connection
 
-
-
-
-
 db_url = get_connection('titanic_db')
 
 query = '''
@@ -19,10 +15,8 @@ query = '''
         FROM passengers
         '''
 
-
 titanic_data = pd.read_sql(query, db_url)
 titanic_data.head()
-
 
 def get_titanic_data():
 
@@ -49,16 +43,8 @@ def get_titanic_data():
         titanic_df.to_csv(filename, index = 0)
 
         return titanic_df
-        
-
 
 get_titanic_data()
-
-
-
-
-
-
 
 
 db_url = get_connection('iris_db')
@@ -68,10 +54,8 @@ query = '''
         FROM species
         '''
 
-
 iris_data = pd.read_sql(query, db_url)
 iris_data.head()
-
 
 def get_iris_data():
 
@@ -97,13 +81,9 @@ def get_iris_data():
         iris_df = pd.read_sql(query, url)
         iris_df.to_csv(filename, index = 0)
 
-        return iris_df   
-
+        return iris_df 
 
 get_iris_data()
-
-
-
 
 
 db_url = get_connection('telco_churn')
@@ -117,10 +97,8 @@ query = '''
         ;
         '''
 
-
 telco_data = pd.read_sql(query, db_url)
 telco_data.head()
-
 
 def get_telco_data():
 
@@ -154,18 +132,3 @@ def get_telco_data():
 
 
 get_telco_data()
-
-
-
-
-
-titanic = get_titanic_data()
-titanic.head()
-
-
-iris = get_iris_data()
-iris.head()
-
-
-telco = get_telco_data()
-telco.head()
