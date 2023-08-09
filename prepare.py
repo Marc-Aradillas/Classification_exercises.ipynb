@@ -1,6 +1,7 @@
 import pandas as pd
-
 import acquire
+
+from prepare import train_val_test
 
 
 
@@ -22,7 +23,7 @@ def prep_titanic():
 
     titanic_data = acquire.get_titanic_data()
     
-    t_data = titanic_data.drop(columns= ['embarked', 'parch'])
+    t_data = titanic_data.drop(columns= 'embarked')
 
     return t_data
 
@@ -49,3 +50,15 @@ def train_val_test(df, strat, seed = 42):
                                  stratify = val_test[strat])
 
     return train, val, test
+
+
+
+def eval_p(p, a = 0.05):
+
+    if p < a:
+
+        print(f'The result is significant, we reject the null hypothesis with a p-value of {round(p, 2)}.')
+
+    else:
+
+        print(f'We failed to reject the null hypothesis with a p-value of {round(p, 2)}.')
