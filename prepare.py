@@ -105,6 +105,12 @@ def titanic_pipeline():
     train, val, test = train_val_test(df, 'survived')
 
     train, val, test = impute_vals(train, val, test)
+
+    train = dummies(train)
+    
+    val = dummies(val)
+    
+    test = dummies(test)
     
     return train, val, test
 
