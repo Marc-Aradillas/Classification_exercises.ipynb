@@ -25,7 +25,7 @@ def prep_titanic():
 
     titanic_data = acquire.get_titanic_data()
     
-    t_data = titanic_data.drop(columns= ['passenger_id', 'pclass', 'embarked', 'deck'])
+    t_data = titanic_data.drop(columns= ['passenger_id', 'embarked', 'deck'])
 
     return t_data
 
