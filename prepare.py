@@ -72,6 +72,15 @@ def impute_vals(train, val, test):
     
     return train, val, test
 
+
+
+def dummies(df):
+
+    df = pd.get_dummies(df, columns = ['sex'], drop_first = True)
+    
+    df = pd.get_dummies(df)
+    
+    return df
     
 
 #defined function to prep titanic dataset
