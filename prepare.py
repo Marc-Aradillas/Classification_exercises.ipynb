@@ -7,21 +7,27 @@ from sklearn.model_selection import train_test_split
 
 def drop_cols(df):
     
-#    return df.drop(columns = ['pclass', 'passenger_id', 'embarked', 'deck'])
+    return df.drop(columns = ['pclass', 'passenger_id', 'embarked', 'deck'])
 
 
 def prep_iris():
-
+    
     iris_df = acquire.get_iris_data()
-
+    
     i_df = iris_df.drop(columns=['species_id', 'species_id.1', 'measurement_id'])
 
     i_df = i_df.rename(columns={'species_name' : 'species'})
-
-    # Perform one-hot encoding for the 'species' column
-    i_df = pd.get_dummies(i_df, columns=['species, sepal_length, sepal_width, petal_length, petal_width'], drop_first=True)
-
+    
+    # Create dummy variables for the 'species' column
+    species_dummies = pd.get_dummies(i_df['species'], prefix='').astype(int)
+    
+    # i_df = i_df.drop(columns = 'species')
+    
+    # Concatenate the dummy variables onto the original dataframe
+    i_df = pd.concat([i_df, species_dummies], axis=1)
+    
     return i_df
+
 
 
 def prep_titanic():
@@ -80,26 +86,19 @@ def impute_vals(train, val, test):
 def dummies(df):
 
     df = pd.get_dummies(df, columns = ['sex'], drop_first = True)
-    
-    df = pd.get_dummies(df)
-    
+        
     return df
     
 
-#defined function to prep titanic dataset
-'''
-def titanic_pipeline():
+
+def iris_pipeline():
     
-    df = get_titanic()
+    df = prep_iris()
     
-    df = drop_cols(df)
-    
-    train, val, test = train_val_test(df, 'survived')
-    
-    train, val, test = impute_vals(train, val, test)
+    train, val, test = train_val_test(df, 'species')
     
     return train, val, test
-'''
+
 
 def titanic_pipeline():
     
