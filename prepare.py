@@ -4,7 +4,7 @@ import acquire
 from sklearn.model_selection import train_test_split
 
 #function for droppping columns
-'''
+
 def drop_cols(df):
     
 #    return df.drop(columns = ['pclass', 'passenger_id', 'embarked', 'deck'])
@@ -18,8 +18,11 @@ def prep_iris():
 
     i_df = i_df.rename(columns={'species_name' : 'species'})
 
+    # Perform one-hot encoding for the 'species' column
+    i_df = pd.get_dummies(i_df, columns=['species, sepal_length, sepal_width, petal_length, petal_width'], drop_first=True)
+
     return i_df
-'''
+
 
 def prep_titanic():
 
